@@ -1,9 +1,12 @@
 // Define address model with validation
 const address = (sequelize, DataTypes) => {
   const Address = sequelize.define("address", {
-    addressNumber: {
+    address1: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    address2: {
+      type: DataTypes.STRING,
     },
     city: {
       type: DataTypes.STRING,

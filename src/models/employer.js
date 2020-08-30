@@ -6,7 +6,7 @@ const employer = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    admins: {
+    teamMembers: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
     email: {
@@ -15,6 +15,13 @@ const employer = (sequelize, DataTypes) => {
       unique: true,
     },
     phoneNumber: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    owner: {
+      type: DataTypes.STRING,
+    },
+    address: {
       type: DataTypes.STRING,
       unique: true,
     },
