@@ -11,6 +11,8 @@ var _user = _interopRequireDefault(require("./user"));
 
 var _message = _interopRequireDefault(require("./message"));
 
+var _employer = _interopRequireDefault(require("./employer"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Allow for date scalar
@@ -20,6 +22,6 @@ const customScalarResolver = {
   Date: _graphqlIsoDate.GraphQLDateTime
 }; // Export all resolvers
 
-var _default = [customScalarResolver, _user.default, _message.default];
+var _default = [customScalarResolver, _user.default, _message.default, _employer.default];
 exports.default = _default;
 //# sourceMappingURL=index.js.map

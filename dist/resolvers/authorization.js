@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isUser = exports.isMessageOwner = exports.isAdmin = exports.isAuthenticated = void 0;
+exports.isAuthEmployee = exports.isUser = exports.isMessageOwner = exports.isAdmin = exports.isAuthenticated = void 0;
 
 var _apolloServer = require("apollo-server");
 
@@ -61,7 +61,28 @@ const isUser = async (parent, {
   }
 
   return _graphqlResolvers.skip;
-};
+}; // Check if user is current owner or team member
+
 
 exports.isUser = isUser;
+
+const isAuthEmployee = async (parent, {
+  id
+}, {
+  models,
+  me
+}) => {
+  const employer = await models.Employer.findByPk(id, {
+    raw: true
+  });
+
+  if (employer.owner !== me.id) {
+    throw new _apolloServer.ForbiddenError("Not authenticated as user.");
+  } // && !_.includes(employer.teamMembers, me.id)
+
+
+  return _graphqlResolvers.skip;
+};
+
+exports.isAuthEmployee = isAuthEmployee;
 //# sourceMappingURL=authorization.js.map

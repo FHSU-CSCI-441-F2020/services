@@ -142,10 +142,7 @@ var _default = {
     }, {
       models
     }) => {
-      let user = await models.User.findByPk(id); // if (username) {
-      //   user.username = username;
-      // }
-
+      let user = await models.User.findByPk(id);
       const newUsername = username ? username : user.username;
       const newEmail = email ? email : user.email;
       const newPassword = password ? password : user.password;
