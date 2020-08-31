@@ -27,9 +27,7 @@ if (process.env.DATABASE_URL) {
 
 const models = {
   User: sequelize.import("./user"),
-  Message: sequelize.import("./message"),
-  Employer: sequelize.import("./employer"),
-  Address: sequelize.import("./address")
+  Message: sequelize.import("./message")
 }; // Create associations between modelss
 
 Object.keys(models).forEach(key => {
