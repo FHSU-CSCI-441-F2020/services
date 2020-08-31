@@ -96,9 +96,6 @@ export default {
       ) => {
         let user = await models.User.findByPk(id);
 
-        // if (username) {
-        //   user.username = username;
-        // }
         const newUsername = username ? username : user.username;
         const newEmail = email ? email : user.email;
         const newPassword = password ? password : user.password;
