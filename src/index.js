@@ -12,6 +12,7 @@ import cors from "cors";
 import http from "http";
 import DataLoader from "dataloader";
 import loaders from "./loaders";
+// import { createDeflateRaw } from "zlib";
 
 // set app variable to express main function
 const app = express();
@@ -85,18 +86,62 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 // Check if using testing database
-const isTest = !!process.env.TEST_DATABASE;
+const isDevelopment = !!process.env.DATABASE_DEVELOP;
 // Check if production database in use
 const isProduction = !!process.env.DATABASE_URL;
 // Port based on prod or dev environment
 const port = process.env.PORT || 8000;
 
 // Connect to postgres database through sequelize
-sequelize.sync({ force: false, logging: false }).then(async () => {
+sequelize.sync({ force: isDevelopment, logging: false }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-
+  if (isDevelopment) {
+    createDefaultData();
+  }
   // Listen on port based on prod or dev
   httpServer.listen({ port }, () => {
     console.log(`Apollo Server on http://localhost:${port}/graphql`);
   });
 });
+
+// For development, clean database, complete necessary table/column updates, add
+// data for each model
+
+async function createDefaultData() {
+  await models.User.create({
+    username: "Admin",
+    email: "admin@jobkik.com",
+    password: "admin",
+    firstName: "Head",
+    lastName: "Admin",
+    role: "admin",
+    phoneNumber: "5555555555",
+    completedProfile: false,
+  });
+
+  await models.User.create({
+    username: "User",
+    email: "user@jobkik.com",
+    password: "password",
+    firstName: "Main",
+    lastName: "User",
+    role: "user",
+    phoneNumber: "1111111111",
+    completedProfile: true,
+  });
+
+  await models.UserProfile.create({
+    userId: "2",
+    statement: "This is a statement",
+    education: ["No education"],
+    workExperience: ["No experience"],
+    lookingFor: ["Not looking for anything"],
+    skills: ["No skills"],
+    active: true,
+    address1: "123 Main",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "US",
+  });
+}

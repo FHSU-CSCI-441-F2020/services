@@ -28,8 +28,14 @@ export default {
     registerEmployer: combineResolvers(
       isAuthenticated || isAdmin,
       async (parent, args, { models }) => {
-        // Create address
-        const address = await models.Address.create({
+        // Create new employer
+        const employer = await models.Employer.create({
+          name: args.name,
+          email: args.email,
+          phoneNumber: args.phoneNumber,
+          owner: args.owner,
+          teamMembers: [args.owner],
+          jobs: [],
           address1: args.address1,
           address2: args.address2,
           city: args.city,
@@ -38,28 +44,16 @@ export default {
           country: args.country,
         });
 
-        // Create new employer, add foreign key for address
-        const employer = await models.Employer.create({
-          name: args.name,
-          email: args.email,
-          phoneNumber: args.phoneNumber,
-          owner: args.owner,
-          teamMembers: [args.owner],
-          jobs: [],
-          address: address.id,
-        });
-
-        // Return employer and address as an object
-        return { employer, address };
+        // Return employer
+        return employer;
       }
     ),
     // Update employer information
     updateEmployer: combineResolvers(
       isAuthenticated || isAdmin,
       async (parent, args, { models }) => {
-        // Retrieve both employer and address
+        // Retrieve employer
         let employer = await models.Employer.findByPk(args.id);
-        let address = await models.Address.findByPk(employer.address);
 
         // Check each possible arguments for changes
         const newName = args.name ? args.name : employer.name;
@@ -85,10 +79,6 @@ export default {
           phoneNumber: newPhoneNumber,
           teamMembers: newTeamMembers,
           jobs: newJobs,
-        });
-
-        // Update address if data changed
-        address = await address.update({
           address1: newAddress1,
           address2: newAddress2,
           city: newCity,
@@ -97,8 +87,8 @@ export default {
           country: newCountry,
         });
 
-        // Return employer and address as an object
-        return { employer, address };
+        // Return employer
+        return employer;
       }
     ),
   },

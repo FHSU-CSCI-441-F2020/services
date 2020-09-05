@@ -4,6 +4,7 @@ import { gql } from "apollo-server-express";
 import userSchema from "./user";
 import messageSchema from "./message";
 import employerSchema from "./employer";
+import userProfileSchema from "./userProfile";
 
 // Link available Schemas
 const linkSchema = gql`
@@ -22,4 +23,10 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, userSchema, messageSchema, employerSchema];
+export default [
+  linkSchema,
+  userSchema,
+  messageSchema,
+  employerSchema,
+  userProfileSchema,
+];

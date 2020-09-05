@@ -15,10 +15,11 @@ export default gql`
       password: String!
       firstName: String!
       lastName: String!
+      phoneNumber: String
       role: String!
     ): NewUser!
 
-    loginUser(login: String!, password: String!): Token!
+    loginUser(login: String!, password: String!): NewUser
 
     updateUser(
       id: ID!
@@ -27,6 +28,7 @@ export default gql`
       password: String
       firstName: String
       lastName: String
+      phoneNumber: String
       role: String
     ): User!
 
@@ -43,13 +45,14 @@ export default gql`
     email: String!
     firstName: String!
     lastName: String!
-    phoneNumber: Int
+    phoneNumber: String
     role: String!
     messages: [Message!]
+    completedProfile: String
   }
 
   type NewUser {
-    user: User!
+    user: User
     token: String!
   }
 `;
