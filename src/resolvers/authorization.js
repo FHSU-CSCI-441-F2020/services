@@ -35,3 +35,13 @@ export const isUser = async (parent, { id }, { models, me }) => {
 
   return skip;
 };
+// Check if user is current owner or team member
+export const isAuthEmployee = async (parent, { id }, { models, me }) => {
+  const employer = await models.Employer.findByPk(id, { raw: true });
+
+  if (employer.owner !== me.id) {
+    throw new ForbiddenError("Not authenticated as user.");
+  }
+  // && !_.includes(employer.teamMembers, me.id)
+  return skip;
+};

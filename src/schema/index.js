@@ -3,11 +3,12 @@ import { gql } from "apollo-server-express";
 // Import User and Message schemas
 import userSchema from "./user";
 import messageSchema from "./message";
+import employerSchema from "./employer";
 
 // Link available Schemas
 const linkSchema = gql`
   scalar Date
-  
+
   type Query {
     _: Boolean
   }
@@ -21,4 +22,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, userSchema, messageSchema];
+export default [linkSchema, userSchema, messageSchema, employerSchema];

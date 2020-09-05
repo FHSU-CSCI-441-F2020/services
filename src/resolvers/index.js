@@ -3,6 +3,7 @@ import { GraphQLDateTime } from "graphql-iso-date";
 // Import User and Message resolvers
 import userResolvers from "./user";
 import messageResolvers from "./message";
+import employerResolvers from "./employer";
 
 // Create date with graphql scalar
 const customScalarResolver = {
@@ -10,4 +11,9 @@ const customScalarResolver = {
 };
 
 // Export all resolvers
-export default [customScalarResolver, userResolvers, messageResolvers];
+export default [
+  customScalarResolver,
+  userResolvers,
+  messageResolvers,
+  employerResolvers,
+];
