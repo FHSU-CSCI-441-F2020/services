@@ -1,7 +1,14 @@
-import { gql } from "apollo-server-express";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _apolloServerExpress = require("apollo-server-express");
 
 // User schemas
-export default gql`
+var _default = (0, _apolloServerExpress.gql)`
   extend type Query {
     getUser(id: ID!): User
     getUsers: [User!]
@@ -15,11 +22,10 @@ export default gql`
       password: String!
       firstName: String!
       lastName: String!
-      phoneNumber: String
       role: String!
     ): NewUser!
 
-    loginUser(login: String!, password: String!): NewUser
+    loginUser(login: String!, password: String!): Token!
 
     updateUser(
       id: ID!
@@ -28,7 +34,6 @@ export default gql`
       password: String
       firstName: String
       lastName: String
-      phoneNumber: String
       role: String
     ): User!
 
@@ -45,14 +50,16 @@ export default gql`
     email: String!
     firstName: String!
     lastName: String!
-    phoneNumber: String
+    phoneNumber: Int
     role: String!
     messages: [Message!]
-    completedProfile: Boolean
   }
 
   type NewUser {
-    user: User
+    user: User!
     token: String!
   }
 `;
+
+exports.default = _default;
+//# sourceMappingURL=user.js.map

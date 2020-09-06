@@ -4,6 +4,7 @@ import { GraphQLDateTime } from "graphql-iso-date";
 import userResolvers from "./user";
 import messageResolvers from "./message";
 import employerResolvers from "./employer";
+import userProfileResolver from "./userProfile";
 
 // Create date with graphql scalar
 const customScalarResolver = {
@@ -16,4 +17,5 @@ export default [
   userResolvers,
   messageResolvers,
   employerResolvers,
+  userProfileResolver,
 ];
