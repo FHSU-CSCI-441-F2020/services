@@ -30,6 +30,7 @@ export default {
       if (!me) {
         return null;
       }
+      console.log(await models.User.findByPk(me.id));
       return await models.User.findByPk(me.id);
     },
   },
@@ -37,7 +38,16 @@ export default {
     // Add user with hashed password
     registerUser: async (
       parent,
-      { username, email, password, firstName, lastName, role, phoneNumber },
+      {
+        username,
+        email,
+        password,
+        firstName,
+        lastName,
+        role,
+        phoneNumber,
+        completedProfile,
+      },
       { models, secret }
     ) => {
       const newUser = await models.User.create({
@@ -48,6 +58,7 @@ export default {
         lastName,
         role,
         phoneNumber,
+        completedProfile,
       });
 
       return {

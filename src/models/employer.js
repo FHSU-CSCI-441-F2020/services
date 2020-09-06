@@ -21,10 +21,6 @@ const employer = (sequelize, DataTypes) => {
     owner: {
       type: DataTypes.STRING,
     },
-    address: {
-      type: DataTypes.STRING,
-      unique: true,
-    },
     address1: {
       type: DataTypes.STRING,
       allowNull: false,

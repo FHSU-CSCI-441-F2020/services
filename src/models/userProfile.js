@@ -20,8 +20,28 @@ const userProfile = (sequelize, DataTypes) => {
     active: {
       type: DataTypes.BOOLEAN,
     },
-    address: {
+    address1: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address2: {
+      type: DataTypes.STRING,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    zip: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     userId: {
       type: DataTypes.STRING,

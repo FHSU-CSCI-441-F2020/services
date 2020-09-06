@@ -48,7 +48,7 @@ export default gql`
     phoneNumber: String
     role: String!
     messages: [Message!]
-    completedProfile: String
+    completedProfile: Boolean
   }
 
   type NewUser {
