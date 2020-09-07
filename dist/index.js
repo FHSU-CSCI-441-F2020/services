@@ -107,8 +107,8 @@ const isProduction = !!process.env.DATABASE_URL; // Port based on prod or dev en
 const port = process.env.PORT || 8000; // Connect to postgres database through sequelize
 
 _models.sequelize.sync({
-  force: false,
-  logging: false
+  force: true,
+  logging: true
 }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
   if (isDevelopment) {
