@@ -111,10 +111,7 @@ _models.sequelize.sync({
   logging: true
 }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-  if (isDevelopment) {
-    createDefaultData();
-  } // Listen on port based on prod or dev
-
+  createDefaultData(); // Listen on port based on prod or dev
 
   httpServer.listen({
     port
@@ -129,7 +126,7 @@ async function createDefaultData() {
   await _models.default.User.create({
     username: "Admin",
     email: "admin@jobkik.com",
-    password: "admin",
+    password: "jobkik",
     firstName: "Head",
     lastName: "Admin",
     role: "admin",
@@ -139,7 +136,7 @@ async function createDefaultData() {
   await _models.default.User.create({
     username: "User",
     email: "user@jobkik.com",
-    password: "password",
+    password: "jobkik",
     firstName: "Main",
     lastName: "User",
     role: "user",

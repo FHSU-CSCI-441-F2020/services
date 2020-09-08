@@ -95,9 +95,7 @@ const port = process.env.PORT || 8000;
 // Connect to postgres database through sequelize
 sequelize.sync({ force: true, logging: true }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-  if (isDevelopment) {
-    createDefaultData();
-  }
+  createDefaultData();
   // Listen on port based on prod or dev
   httpServer.listen({ port }, () => {
     console.log(`Apollo Server on http://localhost:${port}/graphql`);
@@ -111,7 +109,7 @@ async function createDefaultData() {
   await models.User.create({
     username: "Admin",
     email: "admin@jobkik.com",
-    password: "admin",
+    password: "jobkik",
     firstName: "Head",
     lastName: "Admin",
     role: "admin",
@@ -122,7 +120,7 @@ async function createDefaultData() {
   await models.User.create({
     username: "User",
     email: "user@jobkik.com",
-    password: "password",
+    password: "jobkik",
     firstName: "Main",
     lastName: "User",
     role: "user",
