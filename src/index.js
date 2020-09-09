@@ -93,9 +93,9 @@ const isProduction = !!process.env.DATABASE_URL;
 const port = process.env.PORT || 8000;
 
 // Connect to postgres database through sequelize
-sequelize.sync({ force: true, logging: true }).then(async () => {
+sequelize.sync({ force: false, logging: true }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-  createDefaultData();
+  // createDefaultData();
   // Listen on port based on prod or dev
   httpServer.listen({ port }, () => {
     console.log(`Apollo Server on http://localhost:${port}/graphql`);
