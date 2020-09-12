@@ -36,7 +36,7 @@
     "dev": "nodemon --exec babel-node src/index.js",
     "clean": "rm -rf dist && mkdir dist",
     "build-server": "babel -d ./dist ./src -s",
-    "build-prod": "npm run clean && npm run build-server"
+    "build": "npm run clean && npm run build-server"
   },
   "repository": {
     "type": "git",
