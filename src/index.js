@@ -86,18 +86,19 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 // Check if using testing database
-const isDevelopment = !!process.env.DATABASE_DEVELOP;
+const resetDB = false;
 // Check if production database in use
 const isProduction = !!process.env.DATABASE_URL;
 // Port based on prod or dev environment
 const port = process.env.PORT || 8000;
 
 // Connect to postgres database through sequelize
-sequelize.sync({ force: isDevelopment, logging: false }).then(async () => {
+sequelize.sync({ force: resetDB, logging: isProduction }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-  if (isDevelopment) {
-    createDefaultData();
-  }
+    if (resetDB) {
+        createDefaultData();
+    }
+
   // Listen on port based on prod or dev
   httpServer.listen({ port }, () => {
     console.log(`Apollo Server on http://localhost:${port}/graphql`);
@@ -111,7 +112,7 @@ async function createDefaultData() {
   await models.User.create({
     username: "Admin",
     email: "admin@jobkik.com",
-    password: "admin",
+    password: "jobkik",
     firstName: "Head",
     lastName: "Admin",
     role: "admin",
@@ -122,7 +123,7 @@ async function createDefaultData() {
   await models.User.create({
     username: "User",
     email: "user@jobkik.com",
-    password: "password",
+    password: "jobkik",
     firstName: "Main",
     lastName: "User",
     role: "user",

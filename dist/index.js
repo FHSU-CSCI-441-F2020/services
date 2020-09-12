@@ -30,6 +30,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Import required modules for Apollo/GraphQL
 // Allow for cross-domain request
 // Allow transfer of data over HTTP
+// import { createDeflateRaw } from "zlib";
 // set app variable to express main function
 const app = (0, _express.default)(); // Allow cross domain request
 
@@ -99,7 +100,7 @@ const httpServer = _http.default.createServer(app);
 
 server.installSubscriptionHandlers(httpServer); // Check if using testing database
 
-const isTest = !!process.env.TEST_DATABASE; // Check if production database in use
+const isDevelopment = !!process.env.DATABASE_DEVELOP; // Check if production database in use
 
 const isProduction = !!process.env.DATABASE_URL; // Port based on prod or dev environment
 
@@ -107,14 +108,54 @@ const port = process.env.PORT || 8000; // Connect to postgres database through s
 
 _models.sequelize.sync({
   force: false,
-  logging: false
+  logging: true
 }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
+  // createDefaultData();
   // Listen on port based on prod or dev
   httpServer.listen({
     port
   }, () => {
     console.log(`Apollo Server on http://localhost:${port}/graphql`);
   });
-});
+}); // For development, clean database, complete necessary table/column updates, add
+// data for each model
+
+
+async function createDefaultData() {
+  await _models.default.User.create({
+    username: "Admin",
+    email: "admin@jobkik.com",
+    password: "jobkik",
+    firstName: "Head",
+    lastName: "Admin",
+    role: "admin",
+    phoneNumber: "5555555555",
+    completedProfile: false
+  });
+  await _models.default.User.create({
+    username: "User",
+    email: "user@jobkik.com",
+    password: "jobkik",
+    firstName: "Main",
+    lastName: "User",
+    role: "user",
+    phoneNumber: "1111111111",
+    completedProfile: true
+  });
+  await _models.default.UserProfile.create({
+    userId: "2",
+    statement: "This is a statement",
+    education: ["No education"],
+    workExperience: ["No experience"],
+    lookingFor: ["Not looking for anything"],
+    skills: ["No skills"],
+    active: true,
+    address1: "123 Main",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "US"
+  });
+}
 //# sourceMappingURL=index.js.map

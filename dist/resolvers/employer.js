@@ -41,16 +41,7 @@ var _default = {
     registerEmployer: (0, _graphqlResolvers.combineResolvers)(_authorization.isAuthenticated || _authorization.isAdmin, async (parent, args, {
       models
     }) => {
-      // Create address
-      const address = await models.Address.create({
-        address1: args.address1,
-        address2: args.address2,
-        city: args.city,
-        state: args.state,
-        zip: args.zip,
-        country: args.country
-      }); // Create new employer, add foreign key for address
-
+      // Create new employer
       const employer = await models.Employer.create({
         name: args.name,
         email: args.email,
@@ -58,21 +49,22 @@ var _default = {
         owner: args.owner,
         teamMembers: [args.owner],
         jobs: [],
-        address: address.id
-      }); // Return employer and address as an object
+        address1: args.address1,
+        address2: args.address2,
+        city: args.city,
+        state: args.state,
+        zip: args.zip,
+        country: args.country
+      }); // Return employer
 
-      return {
-        employer,
-        address
-      };
+      return employer;
     }),
     // Update employer information
     updateEmployer: (0, _graphqlResolvers.combineResolvers)(_authorization.isAuthenticated || _authorization.isAdmin, async (parent, args, {
       models
     }) => {
-      // Retrieve both employer and address
-      let employer = await models.Employer.findByPk(args.id);
-      let address = await models.Address.findByPk(employer.address); // Check each possible arguments for changes
+      // Retrieve employer
+      let employer = await models.Employer.findByPk(args.id); // Check each possible arguments for changes
 
       const newName = args.name ? args.name : employer.name;
       const newEmail = args.email ? args.email : employer.email;
@@ -91,22 +83,16 @@ var _default = {
         email: newEmail,
         phoneNumber: newPhoneNumber,
         teamMembers: newTeamMembers,
-        jobs: newJobs
-      }); // Update address if data changed
-
-      address = await address.update({
+        jobs: newJobs,
         address1: newAddress1,
         address2: newAddress2,
         city: newCity,
         state: newState,
         zip: newZip,
         country: newCountry
-      }); // Return employer and address as an object
+      }); // Return employer
 
-      return {
-        employer,
-        address
-      };
+      return employer;
     })
   }
 };

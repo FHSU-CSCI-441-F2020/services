@@ -1,7 +1,14 @@
-import { gql } from "apollo-server-express";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _apolloServerExpress = require("apollo-server-express");
 
 // User schemas
-export default gql`
+var _default = (0, _apolloServerExpress.gql)`
   extend type Query {
     getUserProfile(userId: String!): userProfile
     getUserProfiles(active: Boolean): [userProfile!]
@@ -11,8 +18,8 @@ export default gql`
     createProfile(
       userId: String!
       statement: String!
-      education: [JSON]!
-      workExperience: [JSON]!
+      education: [String]!
+      workExperience: [String]!
       lookingFor: [String]!
       skills: [String]!
       active: Boolean!
@@ -27,10 +34,10 @@ export default gql`
     updateProfile(
       id: ID!
       statement: String
-      education: [JSON!]
-      workExperience: [JSON!]
+      education: [String!]
+      workExperience: [String!]
       lookingFor: [String!]
-      skills: [String]
+      skills: [String!]
       active: Boolean
       address1: String
       address2: String
@@ -44,10 +51,10 @@ export default gql`
   type userProfile {
     id: ID
     statement: String
-    education: [JSON]
-    workExperience: [JSON]
-    lookingFor: [JSON]
-    skills: [JSON]
+    education: [String]
+    workExperience: [String]
+    lookingFor: [String]
+    skills: [String]
     active: Boolean!
     address1: String
     address2: String
@@ -58,3 +65,6 @@ export default gql`
     userId: String
   }
 `;
+
+exports.default = _default;
+//# sourceMappingURL=userProfile.js.map

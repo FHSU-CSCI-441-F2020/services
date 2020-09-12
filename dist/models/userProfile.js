@@ -1,58 +1,66 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 // Define userProfile model with validation
 const userProfile = (sequelize, DataTypes) => {
   const UserProfile = sequelize.define("userProfile", {
     statement: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     education: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
     workExperience: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
-
     lookingFor: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
     skills: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
     active: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.BOOLEAN
     },
     address1: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     address2: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     zip: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     userId: {
-      type: DataTypes.STRING,
-    },
+      type: DataTypes.STRING
+    }
   });
 
-  UserProfile.associate = (models) => {
+  UserProfile.associate = models => {
     UserProfile.belongsTo(models.UserProfile);
   };
 
   return UserProfile;
 };
 
-export default userProfile;
+var _default = userProfile;
+exports.default = _default;
+//# sourceMappingURL=userProfile.js.map

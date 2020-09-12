@@ -62,6 +62,7 @@ var _default = {
         return null;
       }
 
+      console.log(await models.User.findByPk(me.id));
       return await models.User.findByPk(me.id);
     }
   },
@@ -73,7 +74,9 @@ var _default = {
       password,
       firstName,
       lastName,
-      role
+      role,
+      phoneNumber,
+      completedProfile
     }, {
       models,
       secret
@@ -84,7 +87,9 @@ var _default = {
         password,
         firstName,
         lastName,
-        role
+        role,
+        phoneNumber,
+        completedProfile
       });
       return {
         token: createToken(newUser, secret, "30 days"),
@@ -111,10 +116,12 @@ var _default = {
 
       if (!isValid) {
         throw new _apolloServer.AuthenticationError("Invalid password.");
-      } // Return token for client
+      }
 
+      console.log(user); // Return token for client
 
       return {
+        user,
         token: createToken(user, secret, "30 days")
       };
     },
@@ -131,33 +138,30 @@ var _default = {
       });
     }),
     // Delete a user
-    updateUser: (0, _graphqlResolvers.combineResolvers)(_authorization.isUser || _authorization.isAdmin, async (parent, {
-      id,
-      username,
-      email,
-      password,
-      firstName,
-      lastName,
-      role
-    }, {
+    updateUser: (0, _graphqlResolvers.combineResolvers)(_authorization.isUser || _authorization.isAdmin, async (parent, args, {
       models
     }) => {
-      let user = await models.User.findByPk(id);
-      const newUsername = username ? username : user.username;
-      const newEmail = email ? email : user.email;
-      const newPassword = password ? password : user.password;
-      const newFirstName = firstName ? firstName : user.firstName;
-      const newLastName = lastName ? lastName : user.lastName;
-      const newRole = role ? role : user.role;
+      console.log(args);
+      let user = await models.User.findByPk(args.id);
+      user.username = args.username ? args.username : user.username;
+      user.email = args.email ? args.email : user.email;
+      user.password = args.password ? args.password : user.password;
+      user.firstName = args.firstName ? args.firstName : user.firstName;
+      user.lastName = args.lastName ? args.lastName : user.lastName;
+      user.role = args.role ? args.role : user.role;
+      user.phoneNumber = args.phoneNumber ? args.phoneNumber : user.phoneNumber;
+      user.completedProfile = args.completedProfile ? args.completedProfile : user.completedProfile;
       await user.update({
-        username: newUsername,
-        email: newEmail,
-        password: newPassword,
-        firstName: newFirstName,
-        lastName: newLastName,
-        role: newRole
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        phoneNumber: user.phoneNumber,
+        completedProfile: user.completedProfile
       });
-      return await models.User.findByPk(id);
+      return await models.User.findByPk(args.id);
     })
   },
   // Define User message type return value

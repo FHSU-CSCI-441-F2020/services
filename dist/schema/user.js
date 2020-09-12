@@ -22,10 +22,11 @@ var _default = (0, _apolloServerExpress.gql)`
       password: String!
       firstName: String!
       lastName: String!
+      phoneNumber: String
       role: String!
     ): NewUser!
 
-    loginUser(login: String!, password: String!): Token!
+    loginUser(login: String!, password: String!): NewUser
 
     updateUser(
       id: ID!
@@ -34,6 +35,7 @@ var _default = (0, _apolloServerExpress.gql)`
       password: String
       firstName: String
       lastName: String
+      phoneNumber: String
       role: String
     ): User!
 
@@ -50,13 +52,14 @@ var _default = (0, _apolloServerExpress.gql)`
     email: String!
     firstName: String!
     lastName: String!
-    phoneNumber: Int
+    phoneNumber: String
     role: String!
     messages: [Message!]
+    completedProfile: Boolean
   }
 
   type NewUser {
-    user: User!
+    user: User
     token: String!
   }
 `;

@@ -58,6 +58,12 @@ const user = (sequelize, DataTypes) => {
     lastName: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    phoneNumber: {
+      type: DataTypes.STRING
+    },
+    completedProfile: {
+      type: DataTypes.BOOLEAN
     }
   }); // Delete all user messages
 
