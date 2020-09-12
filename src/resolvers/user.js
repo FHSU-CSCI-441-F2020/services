@@ -115,7 +115,7 @@ export default {
         user.phoneNumber = args.phoneNumber
           ? args.phoneNumber
           : user.phoneNumber;
-        user.completedProfile = args.completedProfile
+        user.completedProfile = args.completedProfile !== null
           ? args.completedProfile
           : user.completedProfile;
 

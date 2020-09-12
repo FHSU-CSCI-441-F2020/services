@@ -30,6 +30,7 @@ export default gql`
       lastName: String
       phoneNumber: String
       role: String
+      completedProfile: Boolean
     ): User!
 
     deleteUser(id: ID!): Boolean!

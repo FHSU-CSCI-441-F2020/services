@@ -5,10 +5,10 @@ const userProfile = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     education: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.JSON),
     },
     workExperience: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.JSON),
     },
 
     lookingFor: {

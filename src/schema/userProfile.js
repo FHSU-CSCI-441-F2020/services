@@ -11,8 +11,8 @@ export default gql`
     createProfile(
       userId: String!
       statement: String!
-      education: [String]!
-      workExperience: [String]!
+      education: [JSON]!
+      workExperience: [JSON]!
       lookingFor: [String]!
       skills: [String]!
       active: Boolean!
@@ -27,10 +27,10 @@ export default gql`
     updateProfile(
       id: ID!
       statement: String
-      education: [String!]
-      workExperience: [String!]
+      education: [JSON!]
+      workExperience: [JSON!]
       lookingFor: [String!]
-      skills: [String!]
+      skills: [String]
       active: Boolean
       address1: String
       address2: String
@@ -44,10 +44,10 @@ export default gql`
   type userProfile {
     id: ID
     statement: String
-    education: [String]
-    workExperience: [String]
-    lookingFor: [String]
-    skills: [String]
+    education: [JSON]
+    workExperience: [JSON]
+    lookingFor: [JSON]
+    skills: [JSON]
     active: Boolean!
     address1: String
     address2: String
