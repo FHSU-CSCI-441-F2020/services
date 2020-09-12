@@ -37,6 +37,7 @@ var _default = (0, _apolloServerExpress.gql)`
       lastName: String
       phoneNumber: String
       role: String
+      completedProfile: Boolean
     ): User!
 
     deleteUser(id: ID!): Boolean!

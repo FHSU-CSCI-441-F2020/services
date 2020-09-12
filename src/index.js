@@ -86,7 +86,7 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 // Check if using testing database
-const resetDB = false;
+const resetDB = true;
 // Check if production database in use
 const isProduction = !!process.env.DATABASE_URL;
 // Port based on prod or dev environment
@@ -95,9 +95,9 @@ const port = process.env.PORT || 8000;
 // Connect to postgres database through sequelize
 sequelize.sync({ force: resetDB, logging: isProduction }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-    if (resetDB) {
-        createDefaultData();
-    }
+  if (resetDB) {
+    createDefaultData();
+  }
 
   // Listen on port based on prod or dev
   httpServer.listen({ port }, () => {

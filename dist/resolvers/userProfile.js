@@ -90,12 +90,12 @@ var _default = {
       const newLookingFor = args.lookingFor ? args.lookingFor : userProfile.lookingFor;
       const newSkills = args.skills ? args.skills : userProfile.skills;
       const newActive = args.active ? args.active : userProfile.active;
-      const newAddress1 = args.address1 ? args.address1 : address.address1;
-      const newAddress2 = args.address2 ? args.address2 : address.address2;
-      const newCity = args.city ? args.city : address.city;
-      const newState = args.state ? args.state : address.state;
-      const newZip = args.zip ? args.zip : address.zip;
-      const newCountry = args.country ? args.country : address.country; // Update userProfile if data changed
+      const newAddress1 = args.address1 ? args.address1 : userProfile.address1;
+      const newAddress2 = args.address2 ? args.address2 : userProfile.address2;
+      const newCity = args.city ? args.city : userProfile.city;
+      const newState = args.state ? args.state : userProfile.state;
+      const newZip = args.zip ? args.zip : userProfile.zip;
+      const newCountry = args.country ? args.country : userProfile.country; // Update userProfile if data changed
 
       userProfile = await userProfile.update({
         statement: newStatement,
@@ -104,15 +104,6 @@ var _default = {
         lookingFor: newLookingFor,
         skills: newSkills,
         active: newActive,
-        address1: newAddress1,
-        address2: newAddress2,
-        city: newCity,
-        state: newState,
-        zip: newZip,
-        country: newCountry
-      }); // Update address if data changed
-
-      address = await address.update({
         address1: newAddress1,
         address2: newAddress2,
         city: newCity,

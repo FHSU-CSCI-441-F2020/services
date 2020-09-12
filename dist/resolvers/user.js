@@ -150,7 +150,7 @@ var _default = {
       user.lastName = args.lastName ? args.lastName : user.lastName;
       user.role = args.role ? args.role : user.role;
       user.phoneNumber = args.phoneNumber ? args.phoneNumber : user.phoneNumber;
-      user.completedProfile = args.completedProfile ? args.completedProfile : user.completedProfile;
+      user.completedProfile = args.completedProfile !== null ? args.completedProfile : user.completedProfile;
       await user.update({
         username: user.username,
         email: user.email,
