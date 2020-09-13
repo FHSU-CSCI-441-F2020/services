@@ -95,9 +95,9 @@ const port = process.env.PORT || 8000;
 // Connect to postgres database through sequelize
 sequelize.sync({ force: resetDB, logging: isProduction }).then(async () => {
   // sequelize.sync({ force: isTest }).then(async () => {
-    if (resetDB) {
-        createDefaultData();
-    }
+  if (resetDB) {
+    createDefaultData();
+  }
 
   // Listen on port based on prod or dev
   httpServer.listen({ port }, () => {

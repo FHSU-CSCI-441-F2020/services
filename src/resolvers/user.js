@@ -30,7 +30,6 @@ export default {
       if (!me) {
         return null;
       }
-      console.log(await models.User.findByPk(me.id));
       return await models.User.findByPk(me.id);
     },
   },
@@ -115,9 +114,10 @@ export default {
         user.phoneNumber = args.phoneNumber
           ? args.phoneNumber
           : user.phoneNumber;
-        user.completedProfile = args.completedProfile !== null
-          ? args.completedProfile
-          : user.completedProfile;
+        user.completedProfile =
+          args.completedProfile !== null
+            ? args.completedProfile
+            : user.completedProfile;
 
         await user.update({
           username: user.username,
