@@ -23,6 +23,7 @@ const models = {
   Message: sequelize.import("./message"),
   Employer: sequelize.import("./employer"),
   UserProfile: sequelize.import("./userProfile"),
+  Job : sequelize.import("./job"),
 };
 
 // Create associations between modelss
