@@ -23,14 +23,14 @@ const job = (sequelize, DataTypes) => {
     }
   });
 
-  Job.associate = (models) => {
-    Job.hasMany(models.Application, {
-      onDelete: 'CASCADE'
-    });
-    Job.belongsTo(models.Employer, {
-      foreignKey: 'owner'
-    });
-  };
+  // Job.associate = (models) => {
+  //   Job.hasMany(models.Application, {
+  //     onDelete: 'CASCADE'
+  //   });
+  //   Job.belongsTo(models.Employer, {
+  //     foreignKey: 'owner'
+  //   });
+  // };
 
   return Job;
 };

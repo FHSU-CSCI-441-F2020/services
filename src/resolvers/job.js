@@ -17,9 +17,9 @@ export default{
   },
   Mutation:{
     //createjob
-    createJob: async (parent, args, {models, user}) => {
+    createJob: async (parent, args, {models, me}) => {
       try{
-       await models.Job.create({...args, owner: user.id});
+       await models.Job.create({...args, owner: me.id});
        return true;
      }catch(err){
        console.log(err);
