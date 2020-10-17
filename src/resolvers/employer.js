@@ -65,12 +65,12 @@ export default {
           ? args.teamMembers
           : employer.teamMembers;
         const newJobs = args.jobs ? args.jobs : employer.jobs;
-        const newAddress1 = args.address1 ? args.address1 : address.address1;
-        const newAddress2 = args.address2 ? args.address2 : address.address2;
-        const newCity = args.city ? args.city : address.city;
-        const newState = args.state ? args.state : address.state;
-        const newZip = args.zip ? args.zip : address.zip;
-        const newCountry = args.country ? args.country : address.country;
+        const newAddress1 = args.address1 ? args.address1 : employer.address1;
+        const newAddress2 = args.address2 ? args.address2 : employer.address2;
+        const newCity = args.city ? args.city : employer.city;
+        const newState = args.state ? args.state : employer.state;
+        const newZip = args.zip ? args.zip : employer.zip;
+        const newCountry = args.country ? args.country : employer.country;
 
         // Update employer if data changed
         employer = await employer.update({

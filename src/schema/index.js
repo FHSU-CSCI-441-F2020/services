@@ -6,6 +6,7 @@ import userSchema from "./user";
 import messageSchema from "./message";
 import employerSchema from "./employer";
 import userProfileSchema from "./userProfile";
+import jobSchema from "./job";
 
 // Link available Schemas
 const linkSchema = gql`
@@ -32,4 +33,5 @@ export default [
   messageSchema,
   employerSchema,
   userProfileSchema,
+  jobSchema,
 ];
