@@ -17,6 +17,8 @@ var _employer = _interopRequireDefault(require("./employer"));
 
 var _userProfile = _interopRequireDefault(require("./userProfile"));
 
+var _job = _interopRequireDefault(require("./job"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Import User and Message schemas
@@ -38,6 +40,6 @@ const linkSchema = (0, _apolloServerExpress.gql)`
     _: Boolean
   }
 `;
-var _default = [linkSchema, _user.default, _message.default, _employer.default, _userProfile.default];
+var _default = [linkSchema, _user.default, _message.default, _employer.default, _userProfile.default, _job.default];
 exports.default = _default;
 //# sourceMappingURL=index.js.map

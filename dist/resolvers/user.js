@@ -62,7 +62,6 @@ var _default = {
         return null;
       }
 
-      console.log(await models.User.findByPk(me.id));
       return await models.User.findByPk(me.id);
     }
   },
