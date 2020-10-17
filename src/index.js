@@ -86,7 +86,7 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 // Check if using testing database
-const resetDB = true;
+const resetDB = false;
 // Check if production database in use
 const isProduction = !!process.env.DATABASE_URL;
 // Port based on prod or dev environment
