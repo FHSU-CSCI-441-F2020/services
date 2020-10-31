@@ -107,7 +107,6 @@ export default {
 
         user.username = args.username ? args.username : user.username;
         user.email = args.email ? args.email : user.email;
-        user.password = args.password ? args.password : user.password;
         user.firstName = args.firstName ? args.firstName : user.firstName;
         user.lastName = args.lastName ? args.lastName : user.lastName;
         user.role = args.role ? args.role : user.role;
@@ -122,7 +121,6 @@ export default {
         await user.update({
           username: user.username,
           email: user.email,
-          password: user.password,
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role,

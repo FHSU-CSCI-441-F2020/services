@@ -44,7 +44,8 @@ export default {
     // Create new userProfile
     createProfile: combineResolvers(
       isAuthenticated || isAdmin,
-      async (parent, args, { models }) => {
+      async (parent, args, { models, me }) => {
+        console.log(args);
         // Create new userProfile
         const userProfile = await models.UserProfile.create({
           userId: args.userId,
@@ -62,6 +63,8 @@ export default {
           country: args.country,
         });
 
+        const user = await models.User.findByPk(args.userId);
+        await user.update({ completedProfile: true });
         // Return userProfile and address as an object
         return userProfile;
       }
