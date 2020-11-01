@@ -1,4 +1,3 @@
-
 // Generate token
 import jwt from "jsonwebtoken";
 // Allow for authentications
@@ -8,47 +7,42 @@ import { AuthenticationError, UserInputError } from "apollo-server";
 // Check if user has admin role
 import { isAdmin, isAuthenticated, isUser } from "./authorization";
 
-export default{
-  Query:{
+export default {
+  Query: {
     //get a single job
-    getJob:(parent, {id}, {models}) => models.Job.findOne({where: {id}}),
+    getJob: (parent, { id }, { models }) =>
+      models.Job.findOne({ where: { id } }),
     //get all jobs
-    getAllJobs:(parent, args, {models}) => models.Job.findAll(),
+    getAllJobs: (parent, args, { models }) => models.Job.findAll(),
   },
-  Mutation:{
+  Mutation: {
     //createjob
-    createJob: async (parent, args, {models, me}) => {
-      try{
-       await models.Job.create({...args, owner: me.id});
-       return true;
-     }catch(err){
-       console.log(err);
-       return false;
-     }
-    },
-    updateJob: async (parent, args, {models}) => {
+    createJob: combineResolvers(
       isAuthenticated || isAdmin,
-        job = models.Job.findByPk(args.id).then( job => {
-          if(!job){
-            throw new Error("not found");
-          }else{
-            job.update({
-              name: args.name || job.name,
-              description: args.description || job.description,
-              requirements: args.requirements || job.requirements,
-              location: args.location || job.location,
-              hours: args.hours || job.hours,
-            })
-          }
-        })
-    },
-    deleteJob: combineResolvers(
-        isAuthenticated || isAdmin,
-        async (parent, { id }, { models }) => {
-          return await models.Job.destroy({
-            where: { id },
-          });
-        }
-      ),
+      async (parent, args, { models, me }) => {
+        console.log(args);
+        const job = await models.Job({
+          name: "Lutd",
+          description: "Job Description",
+          requirements: "Jeb Requirements",
+          city: "Kansas City",
+          state: "MO",
+          zip: 64151,
+          country: "USA",
+          owner: "1",
+          hours: "Mon-Fri",
+          active: true,
+        });
+        // console.log(job);
+        return true;
+        // try {
+        //   await models.Job.create({ ...args, owner: me.id, active: true });
+        //   return true;
+        // } catch (err) {
+        //   console.log(err);
+        //   return false;
+        // }
+      }
+    ),
   },
 };

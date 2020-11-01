@@ -142,6 +142,31 @@ async function createDefaultData() {
     completedProfile: false,
   });
 
+  await models.Employer.create({
+    name: "Lutd",
+    email: "lutd@email.com",
+    phoneNumber: "1112223333",
+    address1: "123 Main St",
+    address2: "",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "3",
+  });
+
+  await models.Job.create({
+    name: "Lutd",
+    description: "Job Description",
+    requirements: "Jeb Requirements",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "1",
+    hours: "Mon-Fri",
+  });
+
   // await models.UserProfile.create({
   //   userId: "2",
   //   statement: "This is a statement",
