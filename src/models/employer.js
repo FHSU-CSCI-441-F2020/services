@@ -44,6 +44,9 @@ const employer = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    jobs: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
   });
 
   Employer.associate = (models) => {

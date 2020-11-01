@@ -82,7 +82,9 @@ const user = (sequelize, DataTypes) => {
 
   // Create hash of inputted password
   User.beforeCreate(async (user) => {
-    user.password = await user.generatePasswordHash();
+    if (user.password.slice(0, 7) != "$2b$10$") {
+      user.password = await user.generatePasswordHash();
+    }
   });
 
   // Create hash of inputted password

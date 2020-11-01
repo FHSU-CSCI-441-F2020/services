@@ -86,7 +86,7 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 // Check if using testing database
-const resetDB = false;
+const resetDB = true;
 // Check if production database in use
 const isProduction = !!process.env.DATABASE_URL;
 // Port based on prod or dev environment
@@ -131,18 +131,29 @@ async function createDefaultData() {
     completedProfile: true,
   });
 
-  await models.UserProfile.create({
-    userId: "2",
-    statement: "This is a statement",
-    education: ["No education"],
-    workExperience: ["No experience"],
-    lookingFor: ["Not looking for anything"],
-    skills: ["No skills"],
-    active: true,
-    address1: "123 Main",
-    city: "Kansas City",
-    state: "MO",
-    zip: 64151,
-    country: "US",
+  await models.User.create({
+    username: "Employer",
+    email: "company@jobkik.com",
+    password: "jobkik",
+    firstName: "Employer",
+    lastName: "User",
+    role: "employer",
+    phoneNumber: "5555555555",
+    completedProfile: true,
   });
+
+  // await models.UserProfile.create({
+  //   userId: "2",
+  //   statement: "This is a statement",
+  //   education: ["No education"],
+  //   workExperience: ["No experience"],
+  //   lookingFor: ["Not looking for anything"],
+  //   skills: ["No skills"],
+  //   active: true,
+  //   address1: "123 Main",
+  //   city: "Kansas City",
+  //   state: "MO",
+  //   zip: 64151,
+  //   country: "US",
+  // });
 }
