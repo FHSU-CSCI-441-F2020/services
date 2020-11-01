@@ -165,6 +165,36 @@ async function createDefaultData() {
     country: "USA",
     owner: "1",
     hours: "Mon-Fri",
+    active: true,
+    applicants: ["1"],
+  });
+
+  await models.Job.create({
+    name: "ATT",
+    description: "Job Description",
+    requirements: "Jeb Requirements",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "1",
+    hours: "Mon-Fri",
+    active: true,
+    applicants: ["2", "3"],
+  });
+
+  await models.Job.create({
+    name: "Sprint",
+    description: "Job Description",
+    requirements: "Jeb Requirements",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "1",
+    hours: "Mon-Sun",
+    active: false,
+    applicants: [],
   });
 
   // await models.UserProfile.create({

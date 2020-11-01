@@ -1,10 +1,10 @@
 import { gql } from "apollo-server-express";
-//crud
-// User schemas
+
+// Job schemas
 export default gql`
   extend type Query {
     getJob(id: ID!): Job!
-    getAllJobs: [Job!]!
+    getJobs(active: Boolean): [Job!]
   }
 
   extend type Mutation {
@@ -17,7 +17,7 @@ export default gql`
       zip: Int
       country: String
       hours: String
-    ): Boolean!
+    ): Boolean
   }
 
   type Job {
@@ -29,8 +29,9 @@ export default gql`
     state: String
     zip: Int
     country: String
-    hours: String!
-    applicants: [User!]
-    active: Boolean!
+    hours: String
+    applicants: [String]
+    owner: String
+    active: Boolean
   }
 `;
