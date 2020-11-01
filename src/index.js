@@ -138,8 +138,8 @@ async function createDefaultData() {
     firstName: "Employer",
     lastName: "User",
     role: "employer",
-    phoneNumber: "5555555555",
-    completedProfile: true,
+    phoneNumber: "5555555556",
+    completedProfile: false,
   });
 
   // await models.UserProfile.create({

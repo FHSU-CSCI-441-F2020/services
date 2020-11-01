@@ -10,25 +10,28 @@ const job = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    requirements:{
+    requirements: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    location:{
+    location: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    hours:{
+    hours: {
       type: DataTypes.STRING,
-    }
+    },
+    applicants: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
   });
 
   Job.associate = (models) => {
     Job.hasMany(models.Job, {
-      onDelete: 'CASCADE'
+      onDelete: "CASCADE",
     });
     Job.belongsTo(models.Employer, {
-      foreignKey: 'owner'
+      foreignKey: "owner",
     });
   };
 
