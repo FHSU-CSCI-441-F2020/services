@@ -24,6 +24,7 @@ const models = {
   Employer: sequelize.import("./employer"),
   UserProfile: sequelize.import("./userProfile"),
   Job : sequelize.import("./job"),
+  Application : sequelize.import("./application"),
 };
 
 // Create associations between modelss

@@ -6,6 +6,7 @@ import messageResolvers from "./message";
 import employerResolvers from "./employer";
 import userProfileResolver from "./userProfile";
 import jobResolver from "./job";
+import applicationResolver from "./application";
 
 // Create date with graphql scalar
 const customScalarResolver = {
@@ -20,4 +21,5 @@ export default [
   employerResolvers,
   userProfileResolver,
   jobResolver,
+  applicationResolver,
 ];
