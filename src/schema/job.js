@@ -30,7 +30,7 @@ export default gql`
     zip: Int
     country: String
     hours: String
-    applicants: [String]
+    applicants: [User]
     owner: String
     active: Boolean
   }

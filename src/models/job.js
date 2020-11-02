@@ -27,7 +27,7 @@ const job = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     applicants: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
     },
     owner: {
       type: DataTypes.STRING,

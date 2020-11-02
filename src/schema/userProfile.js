@@ -3,8 +3,9 @@ import { gql } from "apollo-server-express";
 // User schemas
 export default gql`
   extend type Query {
-    getUserProfile(userId: String!): userProfile
-    getUserProfiles(active: Boolean): [userProfile!]
+    getUserProfile(userId: ID!): UserProfile
+    getUserProfiles(active: Boolean): [UserProfile!]
+    getProfile(id: ID!): CompleteProfile
   }
 
   extend type Mutation {
@@ -22,7 +23,7 @@ export default gql`
       state: String!
       zip: Int!
       country: String!
-    ): userProfile
+    ): UserProfile!
 
     updateProfile(
       id: ID!
@@ -38,10 +39,10 @@ export default gql`
       state: String
       zip: Int
       country: String
-    ): userProfile
+    ): UserProfile
   }
 
-  type userProfile {
+  type UserProfile {
     id: ID
     statement: String
     education: [JSON]
@@ -56,5 +57,10 @@ export default gql`
     zip: Int
     country: String
     userId: String
+  }
+
+  type CompleteProfile {
+    user: User
+    userProfile: UserProfile
   }
 `;

@@ -23,6 +23,19 @@ export default {
       // Return single user
       return userProfile[0];
     },
+    // Single UserProfile
+    getProfile: async (parent, { id }, { models }) => {
+      const user = await models.User.findByPk(id);
+      const profile = await models.UserProfile.findAll({
+        where: {
+          userId: id,
+        },
+      });
+      const userProfile = profile[0];
+
+      // Return single user
+      return { userProfile, user };
+    },
     // All UserProfiles
     getUserProfiles: async (parent, { active }, { models }) => {
       let userProfile;
@@ -48,19 +61,7 @@ export default {
         console.log(args);
         // Create new userProfile
         const userProfile = await models.UserProfile.create({
-          userId: args.userId,
-          statement: args.statement,
-          education: [args.education],
-          workExperience: [args.workExperience],
-          lookingFor: [args.lookingFor],
-          skills: [args.skills],
-          active: args.active,
-          address1: args.address1,
-          address2: args.address2,
-          city: args.city,
-          state: args.state,
-          zip: args.zip,
-          country: args.country,
+          ...args,
         });
 
         const user = await models.User.findByPk(args.userId);
