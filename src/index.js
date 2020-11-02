@@ -142,6 +142,27 @@ async function createDefaultData() {
     completedProfile: false,
   });
 
+  await models.User.create({
+    username: "johndoe",
+    email: "johndoe@jobkik.com",
+    password: "jobkik",
+    firstName: "John",
+    lastName: "Doe",
+    role: "user",
+    phoneNumber: "5555555556",
+    completedProfile: false,
+  });
+  await models.User.create({
+    username: "janedoe",
+    email: "janedoe@jobkik.com",
+    password: "jobkik",
+    firstName: "Jane",
+    lastName: "Doe",
+    role: "employer",
+    phoneNumber: "5555555556",
+    completedProfile: false,
+  });
+
   await models.Employer.create({
     name: "Lutd",
     email: "lutd@email.com",
@@ -156,7 +177,7 @@ async function createDefaultData() {
   });
 
   await models.Job.create({
-    name: "Lutd",
+    name: "Verizon",
     description: "Job Description",
     requirements: "Jeb Requirements",
     city: "Kansas City",
@@ -165,8 +186,8 @@ async function createDefaultData() {
     country: "USA",
     owner: "1",
     hours: "Mon-Fri",
-    active: true,
-    applicants: ["1"],
+    active: false,
+    applicants: [5],
   });
 
   await models.Job.create({
@@ -177,38 +198,38 @@ async function createDefaultData() {
     state: "MO",
     zip: 64151,
     country: "USA",
-    owner: "3",
+    owner: "1",
     hours: "Mon-Fri",
     active: true,
-    applicants: ["2", "3"],
+    applicants: [4, 5],
   });
 
   await models.Job.create({
-    name: "Sprint",
+    name: "T-Mobile",
     description: "Job Description",
     requirements: "Jeb Requirements",
     city: "Kansas City",
     state: "MO",
     zip: 64151,
     country: "USA",
-    owner: "3",
+    owner: "1",
     hours: "Mon-Sun",
-    active: false,
+    active: true,
     applicants: [],
   });
 
-  // await models.UserProfile.create({
-  //   userId: "2",
-  //   statement: "This is a statement",
-  //   education: ["No education"],
-  //   workExperience: ["No experience"],
-  //   lookingFor: ["Not looking for anything"],
-  //   skills: ["No skills"],
-  //   active: true,
-  //   address1: "123 Main",
-  //   city: "Kansas City",
-  //   state: "MO",
-  //   zip: 64151,
-  //   country: "US",
-  // });
+  await models.UserProfile.create({
+    userId: "4",
+    statement: "This is John Does statement",
+    education: null,
+    workExperience: null,
+    lookingFor: null,
+    skills: ["Python", "Angular"],
+    active: true,
+    address1: "123 Main",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "US",
+  });
 }

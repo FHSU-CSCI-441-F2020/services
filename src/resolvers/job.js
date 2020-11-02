@@ -18,7 +18,23 @@ export default {
     },
     // All Jobs
     getJobs: async (parent, args, { models }) => {
-      return await models.Job.findAll({ where: { ...args } });
+      let jobs = await models.Job.findAll({ where: { ...args } });
+      const users = await models.User.findAll();
+      jobs.forEach((job) => {
+        let userApplicants = [];
+        job.applicants.forEach((id) => {
+          const index = users
+            .map(function (e) {
+              return e.id;
+            })
+            .indexOf(id);
+          if (index !== -1) {
+            userApplicants.push(users[index]);
+          }
+        });
+        job.applicants = userApplicants;
+      });
+      return jobs;
     },
   },
   Mutation: {
