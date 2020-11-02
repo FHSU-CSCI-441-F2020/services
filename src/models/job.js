@@ -1,35 +1,44 @@
-// Define employer model with validation
+// Define job model with validation
 const job = (sequelize, DataTypes) => {
   const Job = sequelize.define("job", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    requirements:{
+    requirements: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    location:{
+    hours: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    hours:{
+    city: {
       type: DataTypes.STRING,
-    }
+    },
+    state: {
+      type: DataTypes.STRING,
+    },
+    zip: {
+      type: DataTypes.INTEGER,
+    },
+    country: {
+      type: DataTypes.STRING,
+    },
+    applicants: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    owner: {
+      type: DataTypes.STRING,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+    },
   });
 
   Job.associate = (models) => {
-    Job.hasMany(models.Job, {
-      onDelete: 'CASCADE'
-    });
-    Job.belongsTo(models.Employer, {
-      foreignKey: 'owner'
-    });
+    Job.belongsTo(models.Job);
   };
 
   return Job;

@@ -86,7 +86,7 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 // Check if using testing database
-const resetDB = false;
+const resetDB = true;
 // Check if production database in use
 const isProduction = !!process.env.DATABASE_URL;
 // Port based on prod or dev environment
@@ -131,18 +131,84 @@ async function createDefaultData() {
     completedProfile: true,
   });
 
-  await models.UserProfile.create({
-    userId: "2",
-    statement: "This is a statement",
-    education: ["No education"],
-    workExperience: ["No experience"],
-    lookingFor: ["Not looking for anything"],
-    skills: ["No skills"],
-    active: true,
-    address1: "123 Main",
+  await models.User.create({
+    username: "Employer",
+    email: "company@jobkik.com",
+    password: "jobkik",
+    firstName: "Employer",
+    lastName: "User",
+    role: "employer",
+    phoneNumber: "5555555556",
+    completedProfile: false,
+  });
+
+  await models.Employer.create({
+    name: "Lutd",
+    email: "lutd@email.com",
+    phoneNumber: "1112223333",
+    address1: "123 Main St",
+    address2: "",
     city: "Kansas City",
     state: "MO",
     zip: 64151,
-    country: "US",
+    country: "USA",
+    owner: "3",
   });
+
+  await models.Job.create({
+    name: "Lutd",
+    description: "Job Description",
+    requirements: "Jeb Requirements",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "1",
+    hours: "Mon-Fri",
+    active: true,
+    applicants: ["1"],
+  });
+
+  await models.Job.create({
+    name: "ATT",
+    description: "Job Description",
+    requirements: "Jeb Requirements",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "3",
+    hours: "Mon-Fri",
+    active: true,
+    applicants: ["2", "3"],
+  });
+
+  await models.Job.create({
+    name: "Sprint",
+    description: "Job Description",
+    requirements: "Jeb Requirements",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "USA",
+    owner: "3",
+    hours: "Mon-Sun",
+    active: false,
+    applicants: [],
+  });
+
+  // await models.UserProfile.create({
+  //   userId: "2",
+  //   statement: "This is a statement",
+  //   education: ["No education"],
+  //   workExperience: ["No experience"],
+  //   lookingFor: ["Not looking for anything"],
+  //   skills: ["No skills"],
+  //   active: true,
+  //   address1: "123 Main",
+  //   city: "Kansas City",
+  //   state: "MO",
+  //   zip: 64151,
+  //   country: "US",
+  // });
 }

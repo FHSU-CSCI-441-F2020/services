@@ -12,14 +12,13 @@ export default gql`
       name: String!
       email: String!
       phoneNumber: String!
-      owner: String!
       address1: String
       address2: String
       city: String!
       state: String!
       zip: Int!
       country: String!
-    ): Employer!
+    ): Boolean!
 
     updateEmployer(
       id: ID!

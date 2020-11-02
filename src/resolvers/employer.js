@@ -27,25 +27,17 @@ export default {
     // Create new employer
     registerEmployer: combineResolvers(
       isAuthenticated || isAdmin,
-      async (parent, args, { models }) => {
-        // Create new employer
+      async (parent, args, { models, me }) => {
+        const user = await models.User.findByPk(me.id);
         const employer = await models.Employer.create({
-          name: args.name,
-          email: args.email,
-          phoneNumber: args.phoneNumber,
-          owner: args.owner,
-          teamMembers: [args.owner],
+          ...args,
           jobs: [],
-          address1: args.address1,
-          address2: args.address2,
-          city: args.city,
-          state: args.state,
-          zip: args.zip,
-          country: args.country,
+          owner: user.id,
         });
-
-        // Return employer
-        return employer;
+        await user.update({
+          role: "employer",
+        });
+        return true;
       }
     ),
     // Update employer information

@@ -5,8 +5,8 @@ import { GraphQLJSONObject } from "graphql-type-json";
 import userSchema from "./user";
 import messageSchema from "./message";
 import employerSchema from "./employer";
-import userProfileSchema from "./userProfile";
 import jobSchema from "./job";
+import userProfileSchema from "./userProfile";
 
 // Link available Schemas
 const linkSchema = gql`
@@ -32,6 +32,6 @@ export default [
   userSchema,
   messageSchema,
   employerSchema,
-  userProfileSchema,
   jobSchema,
+  userProfileSchema,
 ];
