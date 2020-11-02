@@ -30,7 +30,8 @@ const models = {
   Message: sequelize.import("./message"),
   Employer: sequelize.import("./employer"),
   UserProfile: sequelize.import("./userProfile"),
-  Job: sequelize.import("./job")
+  Job: sequelize.import("./job"),
+  Application: sequelize.import("./application")
 }; // Create associations between modelss
 
 Object.keys(models).forEach(key => {
