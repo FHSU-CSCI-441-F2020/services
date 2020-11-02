@@ -4,7 +4,7 @@ import { gql } from "apollo-server-express";
 export default gql`
   extend type Query {
     getJob(id: ID!): Job!
-    getJobs(active: Boolean): [Job!]
+    getJobs(active: Boolean, owner: String): [Job!]
   }
 
   extend type Mutation {

@@ -25,15 +25,18 @@ export default {
     createJob: combineResolvers(
       isAuthenticated || isAdmin,
       async (parent, args, { models, me }) => {
-        const user = await models.User.findByPk(me.id);
         const job = await models.Job.create({
           ...args,
           applicants: [],
-          owner: user.id,
+          owner: me.id,
           active: true,
         });
 
-        return true;
+        if (job.id) {
+          return true;
+        } else {
+          return false;
+        }
       }
     ),
   },
