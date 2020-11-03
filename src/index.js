@@ -150,7 +150,7 @@ async function createDefaultData() {
     lastName: "Doe",
     role: "user",
     phoneNumber: "5555555556",
-    completedProfile: false,
+    completedProfile: true,
   });
   await models.User.create({
     username: "janedoe",
@@ -158,9 +158,9 @@ async function createDefaultData() {
     password: "jobkik",
     firstName: "Jane",
     lastName: "Doe",
-    role: "employer",
+    role: "user",
     phoneNumber: "5555555556",
-    completedProfile: false,
+    completedProfile: true,
   });
 
   await models.Employer.create({
@@ -220,11 +220,34 @@ async function createDefaultData() {
 
   await models.UserProfile.create({
     userId: "4",
-    statement: "This is John Does statement",
-    education: null,
-    workExperience: null,
-    lookingFor: null,
-    skills: ["Python", "Angular"],
+    statement: "I am a passionate developer.",
+    education: [
+      '{"id":"kbl9p3e6pfo","school":"FHSU","completed":false,"completionDate":"2022","fieldOfStudy":"CS","educationLevel":"BS","city":"Hays","state":"KS"}',
+    ],
+    workExperience: [
+      '{"id":"lbyq2xdik1","company":"QuikTrip","title":"Cashier","currentlyEmployed":true,"startMonth":"May","startYear":"2018","endMonth":"","endYear":"","jobDescription":"","city":"Hays","state":"KS"}',
+    ],
+    lookingFor: ["Full Time", "Part Time"],
+    skills: ["C++", "mySQL", "Git"],
+    active: true,
+    address1: "123 Main",
+    city: "Kansas City",
+    state: "MO",
+    zip: 64151,
+    country: "US",
+  });
+
+  await models.UserProfile.create({
+    userId: "5",
+    statement: "I am a quick learner.",
+    education: [
+      '{"id":"kbl9p3e6pfo","school":"FHSU","completed":false,"completionDate":"2021","fieldOfStudy":"CS","educationLevel":"BS","city":"Hays","state":"KS"}',
+    ],
+    workExperience: [
+      '{"id":"lbyq2xdik1","company":"QuikTrip","title":"Cashier","currentlyEmployed":true,"startMonth":"May","startYear":"2018","endMonth":"","endYear":"","jobDescription":"","city":"Hays","state":"KS"}',
+    ],
+    lookingFor: ["Full Time", "Part Time"],
+    skills: ["C++", "mySQL", "Git"],
     active: true,
     address1: "123 Main",
     city: "Kansas City",

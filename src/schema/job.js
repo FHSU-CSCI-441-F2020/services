@@ -9,6 +9,7 @@ export default gql`
 
   extend type Mutation {
     createJob(
+      owner: ID
       name: String
       description: String
       requirements: String
@@ -17,7 +18,7 @@ export default gql`
       zip: Int
       country: String
       hours: String
-    ): Boolean
+    ): [Job]
   }
 
   type Job {
