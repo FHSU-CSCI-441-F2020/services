@@ -179,7 +179,7 @@ async function createDefaultData() {
   await models.Job.create({
     name: "Verizon",
     description: "Job Description",
-    requirements: "Jeb Requirements",
+    requirements: "Job Requirements",
     city: "Kansas City",
     state: "MO",
     zip: 64151,
@@ -193,7 +193,7 @@ async function createDefaultData() {
   await models.Job.create({
     name: "ATT",
     description: "Job Description",
-    requirements: "Jeb Requirements",
+    requirements: "Job Requirements",
     city: "Kansas City",
     state: "MO",
     zip: 64151,
@@ -207,13 +207,13 @@ async function createDefaultData() {
   await models.Job.create({
     name: "T-Mobile",
     description: "Job Description",
-    requirements: "Jeb Requirements",
+    requirements: "Job Requirements",
     city: "Kansas City",
     state: "MO",
     zip: 64151,
     country: "USA",
     owner: "1",
-    hours: "Mon-Sun",
+    hours: "Mon-Sun 10-10",
     active: true,
     applicants: [],
   });
